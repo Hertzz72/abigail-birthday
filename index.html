@@ -2,84 +2,100 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Abigail 🌸</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Abigail 🌸</title>
 
 <style>
-  body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: "Georgia", serif;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto;
-    text-align: center;
-    color: #f2f2f2;
-
-    /* Night sakura background */
-    background-image:
-      linear-gradient(rgba(20,15,35,0.7), rgba(40,30,60,0.8)),
-      url("https://images.unsplash.com/photo-1522383225653-ed111181a951");
-    background-size: cover;
-    background-position: center;
+  * {
+    box-sizing: border-box;
   }
 
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    font-family: "Georgia", serif;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at top, rgba(255,255,255,0.15), rgba(0,0,0,0.6)),
+      linear-gradient(180deg, #1a1a2e, #2b193f);
+    color: #eee;
+  }
+
+  /* STARS */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, white, transparent),
+      radial-gradient(1px 1px at 70% 20%, white, transparent),
+      radial-gradient(1px 1px at 40% 80%, white, transparent),
+      radial-gradient(1px 1px at 90% 60%, white, transparent),
+      radial-gradient(1px 1px at 10% 70%, white, transparent);
+    opacity: 0.6;
+    z-index: 0;
+  }
+
+  /* PAGE FLOW (SCROLL ENABLED) */
+  .page {
+    position: relative;
+    z-index: 1;
+    padding: 40px 16px 90px;
+  }
+
+  /* GLASS CARD */
   .container {
-    max-width: 640px;
-    padding: 38px;
-    border-radius: 22px;
-
-    /* Glassmorphism */
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 34px 28px;
     background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-    z-index: 2;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
   }
 
   h1 {
-    font-size: 2.4em;
+    text-align: center;
     margin-bottom: 26px;
+    font-size: 2.2em;
+    color: #fff;
   }
 
   button {
-    padding: 14px 34px;
+    display: block;
+    margin: 0 auto 32px;
+    padding: 14px 38px;
     font-size: 16px;
     border: none;
     border-radius: 30px;
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    background: rgba(255,255,255,0.9);
+    color: #222;
     cursor: pointer;
-    transition: transform 0.2s ease;
   }
 
-  button:hover {
-    transform: scale(1.05);
+  button:active {
+    transform: scale(0.97);
   }
 
   .message {
     display: none;
-    font-size: 1.08em;
+    font-size: 1.05em;
     line-height: 1.9;
-    margin-top: 32px;
-    animation: fadeIn 3s ease forwards;
+    color: #f1f1f1;
   }
 
-  .signature {
-    margin-top: 28px;
-    font-style: italic;
-    opacity: 0.9;
+  .message p {
+    margin-bottom: 22px;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Sakura petals */
+  /* SAKURA PETALS */
   .petal {
     position: fixed;
     top: -10%;
@@ -89,90 +105,67 @@
     border-radius: 50% 50% 50% 0;
     transform: rotate(45deg);
     opacity: 0.9;
-    animation: fall linear forwards;
-    z-index: 1;
-    box-shadow: 0 0 8px rgba(255,150,180,0.9);
+    animation: fall linear infinite;
+    z-index: 3;
+    pointer-events: none;
+    box-shadow: 0 0 6px rgba(255,150,180,0.8);
   }
 
   @keyframes fall {
-    to {
-      transform: translate(var(--drift), 120vh) rotate(360deg);
+    from {
+      transform: translateY(0) rotate(0deg);
     }
-  }
-
-  /* Stars */
-  .star {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: twinkle 3s infinite ease-in-out;
-    z-index: 0;
-  }
-
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
+    to {
+      transform: translateY(120vh) rotate(360deg);
+    }
   }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>🌸 Happy Birthday Abi 🌸</h1>
+<div class="page">
+  <div class="container">
+    <h1>🌸 Happy Birthday Abigail 🌸</h1>
 
-  <button onclick="startExperience()">Click this</button>
+    <button onclick="startExperience()">Click this</button>
 
-  <div class="message" id="message">
-    <p>
-      Tonight feels special — not just because it’s your birthday, but because
-      the world seems a little quieter, as if it’s pausing just to acknowledge
-      you.
-    </p>
+    <div class="message" id="message">
+      <p>
+        Tonight feels special — not just because it’s your birthday,
+        but because the world feels a little quieter, as if it’s pausing
+        just to acknowledge you.
+      </p>
 
-    <p>
-      Abi, I hope this year brings you calm in moments of doubt, warmth in
-      moments of silence, and happiness that doesn’t need to be loud to be real.
-      You deserve a life filled with gentle victories and meaningful days.
-    </p>
+      <p>
+        Abi, I hope this year brings you calm in moments of doubt,
+        warmth in moments of silence, and happiness that doesn’t need
+        to be loud to be real.
+      </p>
 
-    <p>
-      Like sakura beneath a night sky, some beauty doesn’t last forever — but
-      it stays with you long after it fades.
-    </p>
+      <p>
+        You deserve a life filled with gentle victories, meaningful days,
+        and moments that stay with you long after they pass.
+      </p>
 
-    <p>
-      Happy Birthday. 🌸
-    </p>
+      <p>
+        Like sakura beneath a star-filled night, some beauty doesn’t last
+        forever — but it leaves something behind.
+      </p>
 
-    <div class="signature">
-      — Manguu
+      <p>
+        Happy Birthday. 🌸
+      </p>
     </div>
   </div>
 </div>
 
 <script>
-let started = false;
-
-/* Create stars once */
-for (let i = 0; i < 120; i++) {
-  const star = document.createElement("div");
-  star.className = "star";
-  star.style.left = Math.random() * 100 + "vw";
-  star.style.top = Math.random() * 100 + "vh";
-  star.style.animationDelay = Math.random() * 3 + "s";
-  document.body.appendChild(star);
-}
-
 function startExperience() {
   document.getElementById("message").style.display = "block";
 
-  if (!started) {
-    started = true;
-    setInterval(createPetal, 260);
+  for (let i = 0; i < 90; i++) {
+    createPetal();
   }
 }
 
@@ -181,10 +174,9 @@ function createPetal() {
   petal.className = "petal";
   petal.style.left = Math.random() * 100 + "vw";
   petal.style.animationDuration = (8 + Math.random() * 6) + "s";
-  petal.style.setProperty("--drift", (Math.random() * 200 - 100) + "px");
   document.body.appendChild(petal);
 
-  setTimeout(() => petal.remove(), 15000);
+  setTimeout(() => petal.remove(), 14000);
 }
 </script>
 
