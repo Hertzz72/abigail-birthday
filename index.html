@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Abigail 🌸</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: "Georgia", serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    color: #f2f2f2;
+
+    /* Night sakura background */
+    background-image:
+      linear-gradient(rgba(20,15,35,0.7), rgba(40,30,60,0.8)),
+      url("https://images.unsplash.com/photo-1522383225653-ed111181a951");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .container {
+    max-width: 640px;
+    padding: 38px;
+    border-radius: 22px;
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    z-index: 2;
+  }
+
+  h1 {
+    font-size: 2.4em;
+    margin-bottom: 26px;
+  }
+
+  button {
+    padding: 14px 34px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+  }
+
+  .message {
+    display: none;
+    font-size: 1.08em;
+    line-height: 1.9;
+    margin-top: 32px;
+    animation: fadeIn 3s ease forwards;
+  }
+
+  .signature {
+    margin-top: 28px;
+    font-style: italic;
+    opacity: 0.9;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Sakura petals */
+  .petal {
+    position: fixed;
+    top: -10%;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle at 30% 30%, #fff, #ff9eb5);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(45deg);
+    opacity: 0.9;
+    animation: fall linear forwards;
+    z-index: 1;
+    box-shadow: 0 0 8px rgba(255,150,180,0.9);
+  }
+
+  @keyframes fall {
+    to {
+      transform: translate(var(--drift), 120vh) rotate(360deg);
+    }
+  }
+
+  /* Stars */
+  .star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite ease-in-out;
+    z-index: 0;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🌸 Happy Birthday Abi 🌸</h1>
+
+  <button onclick="startExperience()">Click this</button>
+
+  <div class="message" id="message">
+    <p>
+      Tonight feels special — not just because it’s your birthday, but because
+      the world seems a little quieter, as if it’s pausing just to acknowledge
+      you.
+    </p>
+
+    <p>
+      Abi, I hope this year brings you calm in moments of doubt, warmth in
+      moments of silence, and happiness that doesn’t need to be loud to be real.
+      You deserve a life filled with gentle victories and meaningful days.
+    </p>
+
+    <p>
+      Like sakura beneath a night sky, some beauty doesn’t last forever — but
+      it stays with you long after it fades.
+    </p>
+
+    <p>
+      Happy Birthday. 🌸
+    </p>
+
+    <div class="signature">
+      — Manguu
+    </div>
+  </div>
+</div>
+
+<script>
+let started = false;
+
+/* Create stars once */
+for (let i = 0; i < 120; i++) {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  document.body.appendChild(star);
+}
+
+function startExperience() {
+  document.getElementById("message").style.display = "block";
+
+  if (!started) {
+    started = true;
+    setInterval(createPetal, 260);
+  }
+}
+
+function createPetal() {
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.animationDuration = (8 + Math.random() * 6) + "s";
+  petal.style.setProperty("--drift", (Math.random() * 200 - 100) + "px");
+  document.body.appendChild(petal);
+
+  setTimeout(() => petal.remove(), 15000);
+}
+</script>
+
+</body>
+</html>
